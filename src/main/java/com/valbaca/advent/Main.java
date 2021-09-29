@@ -8,7 +8,7 @@ import javax.lang.model.SourceVersion;
 public class Main {
     public static void main(String[] args) {
         System.out.println("🎄🎄🎄 ADVENT OF CODE 🎄🎄🎄");
-//        printJavaRuntimeInfo();
+        printJavaRuntimeInfo();
         Year2015Main.main(args);
         System.out.println("🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄");
         Year2016Main.main(args);
