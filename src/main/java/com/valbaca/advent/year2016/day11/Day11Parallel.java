@@ -1,7 +1,6 @@
 package com.valbaca.advent.year2016.day11;
 
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 
 import java.util.Set;
@@ -69,6 +68,7 @@ public class Day11Parallel {
         return () -> {
             Building b = pq.poll();
             if (minSteps.get() <= b.getSteps()) return;
+            // Technically there can be a race-condition here around minStep, but doesn't actually happen
             if (b.isSolved()) {
                 minSteps.set(b.getSteps());
                 System.out.println("New Min!: " + minSteps.get());

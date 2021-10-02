@@ -15,6 +15,18 @@ import static com.valbaca.advent.year2016.day11.Type.gen;
 import static java.lang.Integer.MAX_VALUE;
 
 /**
+ * <a href="https://adventofcode.com/2016/day/11">Problem</a>
+ * <p>
+ * Solved this by creating a Building class, which represents the full state of the building.
+ * The buildings have "scores" which indicate how much closer they are to being the solution.
+ * <p>
+ * Each building can generate options for the "next step" by giving all viable building states one step away.
+ * Buildings are all put into a PriorityQueue, where the priority sort-order is the building's score.
+ * (The priority queue is a min-heap, so the score is actually inverted; lowest score is best).
+ * This queue is worked. The priority ensures we're working on the "closest" solution.
+ * Each building that's pulled off, generates [0, n^2) new building options, where n is the # of items on the current floor.
+ * Because the solution space grows exponentially, the priority queue keeps us working on the best option.
+ * <p>
  * Runtime:
  * Part 1 done in 1.344 s
  * Part 2 done in 56.14 s
@@ -50,6 +62,29 @@ public class Day11 {
         System.out.println("...Part 2 done in " + stopwatch.stop());
 
         System.out.println("Day 11 done!");
+    }
+
+    public void runner(Building init) {
+        PriorityQueue<Building> pq = new PriorityQueue<>();
+        pq.add(init);
+
+        Set<Building> seen = new HashSet<>();
+        seen.add(init);
+
+        int minSteps = MAX_VALUE;
+        while (!pq.isEmpty()) {
+            Building b = pq.poll();
+            if (minSteps <= b.getSteps()) continue;
+            if (b.isSolved()) {
+                minSteps = b.getSteps();
+                System.out.println("New Min!: " + minSteps);
+                continue;
+            }
+            var options = b.generateOptions().collect(Collectors.toSet());
+            var unseen = Sets.difference(options, seen).immutableCopy();
+            seen.addAll(unseen);
+            pq.addAll(unseen);
+        }
     }
 
     public static Building testInput() {
@@ -95,29 +130,6 @@ public class Day11 {
         );
         building.getFloors().get(0).addAll(floorOneItems);
         return building;
-    }
-
-    public void runner(Building init) {
-        PriorityQueue<Building> pq = new PriorityQueue<>();
-        pq.add(init);
-
-        Set<Building> seen = new HashSet<>();
-        seen.add(init);
-
-        int minSteps = MAX_VALUE;
-        while (!pq.isEmpty()) {
-            Building b = pq.poll();
-            if (minSteps <= b.getSteps()) continue;
-            if (b.isSolved()) {
-                minSteps = b.getSteps();
-                System.out.println("New Min!: " + minSteps);
-                continue;
-            }
-            var options = b.generateOptions().collect(Collectors.toSet());
-            var unseen = Sets.difference(options, seen).immutableCopy();
-            seen.addAll(unseen);
-            pq.addAll(unseen);
-        }
     }
 
 
