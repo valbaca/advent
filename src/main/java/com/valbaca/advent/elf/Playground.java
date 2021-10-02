@@ -4,12 +4,22 @@ import com.google.common.collect.*;
 import lombok.Value;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+
 /**
  * Class to mess around in
  */
 public class Playground {
 
     public static void main(String[] args) {
+        ForkJoinPool pool = (ForkJoinPool) Executors.newWorkStealingPool();
+        System.out.println(pool.getParallelism());
+        System.out.println(pool.getPoolSize());
+    }
+
+    private static void playground1() {
         System.out.println(new Bar("Annie", 1));
         var list = Lists.newArrayList("1", "2", "3");
         System.out.println(list);
@@ -35,7 +45,6 @@ public class Playground {
         listMultimap.put("langs", "Java");
         listMultimap.put("langs", "Ruby");
         System.out.println(listMultimap.get("langs"));
-
     }
 
     // show lombok is working
