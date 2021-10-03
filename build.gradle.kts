@@ -38,6 +38,7 @@ tasks.getByName<Test>("test") {
 
 application {
     mainClass.set("com.valbaca.advent.Main")
+    applicationDefaultJvmArgs = listOf("-Xms2G", "-Xmx16G")
 }
 
 graal {
