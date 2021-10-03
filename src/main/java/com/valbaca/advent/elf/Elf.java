@@ -50,7 +50,7 @@ public class Elf {
     }
 
 
-    private static Path getPath(int year, int day, boolean test) {
+    public static Path getPath(int year, int day, boolean test) {
         String str = String.format("input/year%d/day%d%s.txt", year, day, test ? "-test": "");
         var path = Path.of(str);
         return path;

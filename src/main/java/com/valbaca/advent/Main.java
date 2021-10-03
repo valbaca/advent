@@ -1,7 +1,7 @@
 package com.valbaca.advent;
 
-import com.valbaca.advent.year2015.Year2015Main;
-import com.valbaca.advent.year2016.Year2016Main;
+import com.valbaca.advent.year2015.Year2015;
+import com.valbaca.advent.year2016.Year2016;
 
 import javax.lang.model.SourceVersion;
 
@@ -9,9 +9,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("🎄🎄🎄 ADVENT OF CODE 🎄🎄🎄");
         printJavaRuntimeInfo();
-        Year2015Main.main(args);
+
         System.out.println("🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄");
-        Year2016Main.main(args);
+        Year2015.main(args);
+
+        System.out.println("🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄");
+        Year2016.main(args);
+
         System.out.println("🎄🎄🎄...and to all a good night 🎄🎄🎄");
     }
 
