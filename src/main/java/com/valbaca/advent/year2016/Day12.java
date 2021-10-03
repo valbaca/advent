@@ -8,6 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * TIL:
+ * - Working with Scanner. First iteration used a file scanner (which given a file, would give lines) and a line scanner
+ * which given lines, would tokenize the "words".
+ * - Turned out to run faster (probably saving an allocation of a line scanner on each execution) to use a single scanner
+ * - Handling the "jump back" instructions was challenging b/c of off-by-one and having to close the executor and start over
+ * - There's probably a more optimal way to move a bout a file that easily fits in memory...
+ */
 public class Day12 {
     public static void main(String[] args) {
         System.out.println("Day 12");
@@ -32,16 +40,10 @@ public class Day12 {
             var inst = scanner.next();
             var x = scanner.next();
             switch (inst) {
-                case "cpy":
-                    registers.setValue(scanner.next(), registers.getValue(x));
-                    break;
-                case "inc":
-                    registers.setValue(x, registers.getValue(x) + 1);
-                    break;
-                case "dec":
-                    registers.setValue(x, registers.getValue(x) - 1);
-                    break;
-                case "jnz":
+                case "cpy" -> registers.setValue(scanner.next(), registers.getValue(x));
+                case "inc" -> registers.setValue(x, registers.getValue(x) + 1);
+                case "dec" -> registers.setValue(x, registers.getValue(x) - 1);
+                case "jnz" -> {
                     var value = registers.getValue(x);
                     var offset = scanner.next();
                     if (value != 0) {
@@ -56,9 +58,8 @@ public class Day12 {
                             }
                         }
                     }
-                    break;
-                default:
-                    throw new IllegalStateException(String.format("lineNum=%d inst=%s x=%s", lineNum, inst, x));
+                }
+                default -> throw new IllegalStateException(String.format("lineNum=%d inst=%s x=%s", lineNum, inst, x));
             }
         }
         System.out.println("registers[a] = " + registers.getValue("a"));
