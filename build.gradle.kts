@@ -19,6 +19,9 @@ dependencies {
     implementation("org.apache.commons:commons-text:1.9")
     implementation("org.apache.commons:commons-math3:3.6.1")
 
+    // Gives MD5 wrappers
+    implementation("commons-codec:commons-codec:1.15")
+
     // vavr gives good FP
 //    implementation("io.vavr:vavr:0.10.3")
 
