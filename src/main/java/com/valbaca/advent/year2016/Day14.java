@@ -22,26 +22,47 @@ public class Day14 {
         Could instead load the hash, any triples found and any quintuples found
          */
         System.out.println("Testing...");
-        measure(() -> new Day14().run("abc"));
+        measure(() -> new Day14().run(buildSingleHasher("abc")));
 
         System.out.println("Part 1...");
-        measure(() -> new Day14().run("yjdafjpo"));
+        measure(() -> new Day14().run(buildSingleHasher("yjdafjpo")));
+
+        System.out.println("Part 2 testing");
+        measure(() -> new Day14().run(buildStretchHasher("abc"))); // gives 22551
+
+        System.out.println("Part 2...");
+        measure(() -> new Day14().run(buildStretchHasher("yjdafjpo"))); // but 22034 is wrong?
     }
 
-    private void run(String salt) {
+    public static Function<Integer, Hash> buildSingleHasher(String salt) {
+        var md5Hasher = new MD5Hasher();
+        return (Integer i) -> new Hash(i, md5Hasher.hex(salt + i));
+    }
+
+    public static Function<Integer, Hash> buildStretchHasher(String salt) {
+        var md5Hasher = new MD5Hasher();
+        return (Integer i) -> {
+            String s = salt + i;
+            for (int j = 0; j <= 2016; j++){
+                s = md5Hasher.hex(s);
+            }
+            return new Hash(i, s);
+        };
+
+    }
+
+    private void run(Function<Integer, Hash> hasher) {
         Deque<Hash> deque = new ArrayDeque<>();
-        var hasher = new MD5Hasher();
-        Function<Integer, Hash> makeHash = (Integer i) -> new Hash(i, hasher.hex(salt + i));
-        for (int i = 0; i <= 1000; i++) {
-            deque.add(makeHash.apply(i));
+        for (int i = 0; i < 1000; i++) {
+            deque.add(hasher.apply(i));
         }
         int keysFound = 0;
         int indexOfLastFound = -1;
         int index = 0;
         int endIndex = 1000;
         while (keysFound < 64) {
+            deque.add(hasher.apply(endIndex));
             endIndex++;
-            deque.add(makeHash.apply(endIndex));
 
             var currHash = deque.pollFirst();
             assert currHash != null;
