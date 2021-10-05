@@ -10,6 +10,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import static com.valbaca.advent.elf.Timer.measure;
 import static java.lang.Integer.MAX_VALUE;
 
 /**
@@ -25,19 +26,14 @@ public class Day11Parallel {
         System.out.println("Day 11 *parallel* start...");
 
         System.out.println("Test start...");
-        var stopwatch = Stopwatch.createStarted();
-        new Day11Parallel().runner(Day11.testInput());
-        System.out.println("...Test done in " + stopwatch.stop());
+        measure(() -> new Day11Parallel().runner(Day11.testInput()));
 
         System.out.println("Part 1 start...");
-        stopwatch = Stopwatch.createStarted();
-        new Day11Parallel().runner(Day11.part1Input());
-        System.out.println("...Part 1 done in " + stopwatch.stop());
+        measure(() -> new Day11Parallel().runner(Day11.part1Input()));
 
         System.out.println("Part 2...");
-        stopwatch = Stopwatch.createStarted();
-        new Day11Parallel().runner(Day11.part2Input());
-        System.out.println("...Part 2 done in " + stopwatch.stop());
+        measure(() -> new Day11Parallel().runner(Day11.part2Input()));
+
         System.out.println("Day 11 *parallel* done!");
     }
 

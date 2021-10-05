@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static com.valbaca.advent.elf.Timer.measure;
+
 /**
  * TIL:
  * - Working with Scanner. First iteration used a file scanner (which given a file, would give lines) and a line scanner
@@ -20,15 +22,15 @@ public class Day12 {
     public static void main(String[] args) {
         System.out.println("Day 12");
         System.out.println("Test");
-        new Day12().run(Elf.getPath(2016, 12, true), new Registers());
+        measure(() -> new Day12().run(Elf.getPath(2016, 12, true), new Registers()));
 
         System.out.println("Part 1");
-        new Day12().run(Elf.getPath(2016, 12, false), new Registers());
+        measure(() -> new Day12().run(Elf.getPath(2016, 12, false), new Registers()));
 
         System.out.println("Part 2");
         var part2Registers = new Registers();
         part2Registers.setValue("c", 1);
-        new Day12().run(Elf.getPath(2016, 12, false), part2Registers);
+        measure(() -> new Day12().run(Elf.getPath(2016, 12, false), part2Registers));
     }
 
     @SneakyThrows

@@ -2,6 +2,7 @@ package com.valbaca.advent.year2016.day11;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Sets;
+import com.valbaca.advent.elf.Timer;
 
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.valbaca.advent.elf.Timer.measure;
 import static com.valbaca.advent.year2016.day11.Element.*;
 import static com.valbaca.advent.year2016.day11.Type.chip;
 import static com.valbaca.advent.year2016.day11.Type.gen;
@@ -46,20 +48,15 @@ public class Day11 {
 
     public static void main(String[] args) {
         System.out.println("Day 11 start...");
+
         System.out.println("Test start...");
-        var stopwatch = Stopwatch.createStarted();
-        new Day11().runner(testInput());
-        System.out.println("...Test done in " + stopwatch.stop());
+        measure(() -> new Day11().runner(testInput()));
 
         System.out.println("Part 1 start...");
-        stopwatch = Stopwatch.createStarted();
-        new Day11().runner(part1Input());
-        System.out.println("...Part 1 done in " + stopwatch.stop());
+        measure(() -> new Day11().runner(part1Input()));
 
         System.out.println("Part 2...");
-        stopwatch = Stopwatch.createStarted();
-        new Day11().runner(part2Input());
-        System.out.println("...Part 2 done in " + stopwatch.stop());
+        measure(() -> new Day11().runner(part2Input()));
 
         System.out.println("Day 11 done!");
     }

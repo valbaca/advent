@@ -3,6 +3,7 @@ package com.valbaca.advent.year2016;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.valbaca.advent.elf.Timer;
 import lombok.SneakyThrows;
 
 import java.util.Comparator;
@@ -15,6 +16,7 @@ public class Day13 {
     private PriorityQueue<Path> pq;
     private HashSet<Coord> seen;
     private SpotCache cache;
+    private HashSet<Coord> visited;
 
     public static void main(String[] args) {
         System.out.println("Day 13");
@@ -43,15 +45,20 @@ public class Day13 {
         {
             Coord target = new Coord(31, 39);
             int input = 1350;
-            new Day13().run(target, input);
+            Timer.measure(() -> new Day13().run(target, input));
         }
 
+        System.out.println("Part 2");
+        {
+            int input = 1350;
+            Timer.measure(() -> new Day13().run2(input));
+        }
     }
 
 
     private void run(final Coord target, final int input) {
-        pq = new PriorityQueue<Path>(Comparator.comparingInt(Path::steps).thenComparingInt(o -> o.distTo(target)));
-        seen = new HashSet<Coord>();
+        pq = new PriorityQueue<>(Comparator.comparingInt(Path::steps).thenComparingInt(o -> o.distTo(target)));
+        seen = new HashSet<>();
         cache = new SpotCache(input);
 
         var init = new Path(1, 1, 0);
@@ -82,6 +89,42 @@ public class Day13 {
 
         if (cache.getSpot(coord) == Spot.Wall) return;
         pq.add(path);
+    }
+
+
+    private void run2(final int input) {
+        pq = new PriorityQueue<>(Comparator.comparingInt(Path::steps));
+        seen = new HashSet<>();
+        cache = new SpotCache(input);
+        visited = new HashSet<>();
+
+        var init = new Path(1, 1, 0);
+        pq.add(init);
+        seen.add(init.toCoord());
+        visited.add(init.toCoord());
+
+        while (!pq.isEmpty()) {
+            var curr = pq.poll();
+            var steps = curr.steps() + 1;
+            visit2(new Path(curr.x(), curr.y() - 1, steps)); // up
+            visit2(new Path(curr.x() + 1, curr.y(), steps)); // right
+            visit2(new Path(curr.x(), curr.y() + 1, steps)); // down
+            visit2(new Path(curr.x() - 1, curr.y(), steps)); // left
+        }
+        System.out.println(visited.size());
+    }
+
+
+    private void visit2(Path path) {
+        if (path.x() < 0 || path.y() < 0 || path.steps > 50) return;
+        var coord = path.toCoord();
+
+        if (seen.contains(coord)) return;
+        seen.add(coord);
+
+        if (cache.getSpot(coord) == Spot.Wall) return;
+        pq.add(path);
+        visited.add(coord);
     }
 
     private static void testing() {
@@ -134,9 +177,9 @@ public class Day13 {
 
         public SpotCache(int input) {
             this.input = input;
-            this.loader = new CacheLoader<Coord, Spot>() {
+            this.loader = new CacheLoader<>() {
                 @Override
-                public Spot load(Coord key) throws Exception {
+                public Spot load(Coord key) {
                     return Spot.getSpotType(key.x(), key.y(), input);
                 }
             };
