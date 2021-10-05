@@ -12,6 +12,13 @@ import java.util.PriorityQueue;
 
 import static com.valbaca.advent.year2016.Day13.Spot.Open;
 
+/**
+ * TIL:
+ * - A* with PriorityQueue triumphs again (at least I'm pretty sure this is A*)
+ * - Not sure if the Google Cache was needed, but also didn't test without it (TODO?)
+ * - Records were great to work with. Probably should've had Path have a Coord, rather than each have x y fields
+ * - Enums help with readability too
+ */
 public class Day13 {
     private PriorityQueue<Path> pq;
     private HashSet<Coord> seen;

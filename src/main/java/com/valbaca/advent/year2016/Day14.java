@@ -13,6 +13,15 @@ import java.util.function.Function;
 
 import static com.valbaca.advent.elf.Timer.measure;
 
+/**
+ * TIL:
+ * - Glad Apache had a nice wrapper around MD5
+ * - Using a tad of FP via the "buildHasher" method, which returns a function that acts like a dynamic constructor, was
+ * natural and perfect for this. Made extending to Part 2 very easy by just moving the "hasher" up
+ * - Definitely overused the terms "hash" and "hasher"
+ * - Learned you cannot have a static method and instance method share a signature. It's never come up before and it's
+ * probably better that way...but also not something I'd expect in, say, Ruby or Python
+ */
 public class Day14 {
     public static void main(String[] args) {
         System.out.println("Day 14");
