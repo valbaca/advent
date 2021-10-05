@@ -1,29 +1,27 @@
 package com.valbaca.advent.year2016;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 import com.valbaca.advent.elf.Timer;
-import lombok.SneakyThrows;
 
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.function.Function;
 
 import static com.valbaca.advent.year2016.Day13.Spot.Open;
 
 /**
  * TIL:
  * - A* with PriorityQueue triumphs again (at least I'm pretty sure this is A*)
- * - Not sure if the Google Cache was needed, but also didn't test without it (TODO?)
+ * - Not sure if the Google Cache was needed, but also didn't test without it
+ * - UPDATE: it runs faster without the cache! I should've known: avoid premature optimization!
  * - Records were great to work with. Probably should've had Path have a Coord, rather than each have x y fields
  * - Enums help with readability too
  */
 public class Day13 {
     private PriorityQueue<Path> pq;
     private HashSet<Coord> seen;
-    private SpotCache cache;
     private HashSet<Coord> visited;
+    private Function<Coord, Spot> getSpotTypeForCoord;
 
     public static void main(String[] args) {
         System.out.println("Day 13");
@@ -46,7 +44,7 @@ public class Day13 {
         {
             Coord target = new Coord(7, 4);
             int input = 10;
-            new Day13().run(target, input);
+            Timer.measure(() -> new Day13().run(target, input));
         }
         System.out.println("Part 1");
         {
@@ -66,7 +64,7 @@ public class Day13 {
     private void run(final Coord target, final int input) {
         pq = new PriorityQueue<>(Comparator.comparingInt(Path::steps).thenComparingInt(o -> o.distTo(target)));
         seen = new HashSet<>();
-        cache = new SpotCache(input);
+        getSpotTypeForCoord = (Coord c) -> Spot.getSpotType(c.x(), c.y(), input);
 
         var init = new Path(1, 1, 0);
         pq.add(init);
@@ -94,7 +92,7 @@ public class Day13 {
         if (seen.contains(coord)) return;
         seen.add(coord);
 
-        if (cache.getSpot(coord) == Spot.Wall) return;
+        if (getSpotTypeForCoord.apply(coord) == Spot.Wall) return;
         pq.add(path);
     }
 
@@ -102,8 +100,8 @@ public class Day13 {
     private void run2(final int input) {
         pq = new PriorityQueue<>(Comparator.comparingInt(Path::steps));
         seen = new HashSet<>();
-        cache = new SpotCache(input);
         visited = new HashSet<>();
+        getSpotTypeForCoord = (Coord c) -> Spot.getSpotType(c.x(), c.y(), input);
 
         var init = new Path(1, 1, 0);
         pq.add(init);
@@ -129,17 +127,17 @@ public class Day13 {
         if (seen.contains(coord)) return;
         seen.add(coord);
 
-        if (cache.getSpot(coord) == Spot.Wall) return;
+        if (getSpotTypeForCoord.apply(coord) == Spot.Wall) return;
         pq.add(path);
         visited.add(coord);
     }
 
     private static void testing() {
         System.out.println("Testing");
-        var spotCache = new SpotCache(10);
+        Function<Coord, Spot> getSpotTypeForCoord = (Coord c) -> Spot.getSpotType(c.x(), c.y(), 10);
         for (int y = 0; y < 100; y++) {
             for (int x = 0; x < 100; x++) {
-                var spotType = spotCache.getSpot(x, y);
+                var spotType = getSpotTypeForCoord.apply(new Coord(x, y));
                 System.out.print(spotType == Open ? '.' : '#');
             }
             System.out.println();
@@ -174,32 +172,6 @@ public class Day13 {
             long calc = x * x + 3 * x + 2 * x * y + y + y * y + input;
             var bitCount = Long.bitCount(calc);
             return ((bitCount & 1) != 1) ? Open : Wall;
-        }
-    }
-
-    static class SpotCache {
-        private final int input;
-        private final CacheLoader<Coord, Spot> loader;
-        private final LoadingCache<Coord, Spot> cache;
-
-        public SpotCache(int input) {
-            this.input = input;
-            this.loader = new CacheLoader<>() {
-                @Override
-                public Spot load(Coord key) {
-                    return Spot.getSpotType(key.x(), key.y(), input);
-                }
-            };
-            cache = CacheBuilder.newBuilder().maximumSize(1000).build(loader);
-        }
-
-        @SneakyThrows
-        public Spot getSpot(Coord c) {
-            return cache.get(c);
-        }
-
-        public Spot getSpot(int x, int y) {
-            return this.getSpot(new Coord(x, y));
         }
     }
 }
