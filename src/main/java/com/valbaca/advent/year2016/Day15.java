@@ -9,6 +9,7 @@ import static com.valbaca.advent.elf.Timer.measure;
  * - This was probably one of the easiest problems once I could understand and visualize the problem and
  * translate it into terms of mod and lists
  * - Sometimes, don't even bother writing a parser, just type out the input
+ * - This day's problem is an example of one I'd probably struggle to write in Clojure
  */
 public class Day15 {
     public static void main(String[] args) {
