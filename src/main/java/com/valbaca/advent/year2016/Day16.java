@@ -2,25 +2,28 @@ package com.valbaca.advent.year2016;
 
 import org.apache.commons.lang3.StringUtils;
 
+import static com.valbaca.advent.elf.Timer.measure;
+
+/**
+ * TIL:
+ * - This one was really easy, just some pretty basic string manipulations
+ */
 public class Day16 {
     public static void main(String[] args) {
         System.out.println("Day 16");
-        {
-            System.out.println("Testing");
-            var day16 = new Day16();
-            var filledData = day16.fill("10000", 20);
-            System.out.println(filledData);
-            var checksum = day16.checksum(filledData);
-            System.out.println(checksum);
-        }
-        {
-            System.out.println("Part 1");
-            var day16 = new Day16();
-            var filledData = day16.fill("10111100110001111", 272);
-            System.out.println(filledData);
-            var checksum = day16.checksum(filledData);
-            System.out.println(checksum);
-        }
+        System.out.println("Testing");
+        var day16 = new Day16();
+        measure(() -> day16.runner("10000", 20));
+
+        System.out.println("Part 1");
+        measure(() -> day16.runner("10111100110001111", 272)); // ~200 MICROseconds!
+
+        System.out.println("Part 2");
+        measure(() -> day16.runner("10111100110001111", 35651584));
+    }
+
+    public void runner(String input, int length) {
+        System.out.println(checksum(fill(input, length)));
     }
 
     public String fill(String s, int n) {
