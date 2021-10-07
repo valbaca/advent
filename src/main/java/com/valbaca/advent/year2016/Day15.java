@@ -37,20 +37,18 @@ public class Day15 {
             measure(() -> new Day15().runner(discs));
         }
         {
-            {
-                System.out.println("Part 2");
-                List<Disc> discs = List.of(
-                        new Disc(13, 10),
-                        new Disc(17, 15),
-                        new Disc(19, 17),
-                        new Disc(7, 1),
-                        new Disc(5, 0),
-                        new Disc(3, 1),
-                        new Disc(11, 0)
-                );
+            System.out.println("Part 2");
+            List<Disc> discs = List.of(
+                    new Disc(13, 10),
+                    new Disc(17, 15),
+                    new Disc(19, 17),
+                    new Disc(7, 1),
+                    new Disc(5, 0),
+                    new Disc(3, 1),
+                    new Disc(11, 0)
+            );
 
-                measure(() -> new Day15().runner(discs));
-            }
+            measure(() -> new Day15().runner(discs));
         }
     }
 
