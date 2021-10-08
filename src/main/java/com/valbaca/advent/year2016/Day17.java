@@ -34,12 +34,12 @@ public class Day17 {
         don't forget to limit choices by the physical bounds
         optimize for shortest path
          */
+        System.out.println("Day 17");
         System.out.println("Part 1");
         System.out.println(measure(() -> new Day17().part1("veumntbg")));
 
         System.out.println("Part 2");
         System.out.println(measure(() -> new Day17().part2("veumntbg")));
-
     }
 
     public String part1(String passcode) {
