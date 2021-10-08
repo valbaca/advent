@@ -9,7 +9,10 @@ public class Year2016 {
 
         Day11.main(args);
         Day11Parallel.main(args);
-
         Day12.main(args);
+        Day13.main(args);
+        Day14.main(args);
+        Day15.main(args);
+        Day16.main(args);
     }
 }

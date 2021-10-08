@@ -30,6 +30,9 @@ public class Playground {
         System.out.println(hash);
 
         System.out.println(MD5Hasher.hexHash("abc18"));
+
+        System.out.println(MD5Hasher.hexHash("hijkl"));
+
     }
 
     private static void playground2() {
