@@ -1,7 +1,6 @@
 (ns advent-clj.core-test
-  (:require [clojure.test :refer :all]
-            [advent-clj.core :refer :all]))
+  (:require [clojure.test :refer [deftest testing is]]))
 
 (deftest a-test
-  (testing "FIXME, I fail."
+  (testing "testing"
     (is (= 0 0))))

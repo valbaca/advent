@@ -1,6 +1,6 @@
 (ns advent-clj.year2015.day24
   (:require
-   [advent-clj.elf :refer [sum product min-of lines->ints]]
+   [advent-clj.elf :refer [sum product smallest lines->ints]]
    [clojure.math.combinatorics :as c]))
 
 ; TIL:
@@ -21,7 +21,7 @@
   (->> (viable-combs ints i target)
        (map #(vector (count %) (product %))) ; to [pkg entanglement]
        (#(conj % [minPkgs entg]))
-       min-of))
+       smallest))
 
 (defn- solve [ints slots]
   (let [target (/ (reduce + ints) slots)
