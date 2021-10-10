@@ -1,4 +1,4 @@
-(ns advent-clj.year-2015.day-24
+(ns advent-clj.year2015.day24
   (:require
    [advent-clj.elf :refer [sum product min-of lines->ints]]
    [clojure.math.combinatorics :as c]))
@@ -36,27 +36,27 @@
           (recur (inc i) nextMinPkgs nextEntanglement))))))
 
 (defn part1-test []
-  (let [input (lines->ints "input/year_2015/day_24_test.txt")]
+  (let [input (lines->ints "input/year2015/day24_test.txt")]
      (println "Part 1 Test")
      (time (solve input 3))))
 
 (defn part2-test []
-  (let [input (lines->ints "input/year_2015/day_24_test.txt")]
+  (let [input (lines->ints "input/year2015/day24_test.txt")]
      (println "Part 2 test")
      (time (solve input 4))))
 
-(defn main []
+(defn day24main []
   (println "Day 24")
   [(part1-test)
-   (let [input (lines->ints "input/year_2015/day_24.txt")]
+   (let [input (lines->ints "input/year2015/day24.txt")]
      (println "Part 1")
      (time (solve input 3)))
    (part2-test)
-   (let [input (lines->ints "input/year_2015/day_24.txt")]
+   (let [input (lines->ints "input/year2015/day24.txt")]
      (println "Part 2")
      (time (solve input 4)))])
 
-(comment (main))
+(comment (day24main))
          ;; => [{:minPkgs 2, :entg 99} {:minPkgs 6, :entg 11846773891} {:minPkgs 4, :entg 80393059} {:minPkgs 2, :entg 44}]
 
 

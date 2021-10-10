@@ -1,6 +1,6 @@
-(ns advent-clj.year-2015.day-24-test
+(ns advent-clj.year2015.day24-test
   (:require [clojure.test :refer :all]
-            [advent-clj.year-2015.day-24 :refer :all]))
+            [advent-clj.year2015.day24 :refer :all]))
 
 (deftest sanity-test
   (testing "A=A?" (is (= 1 1))))

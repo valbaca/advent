@@ -4,7 +4,15 @@ Advent of Clojure!
 
 Solving [Advent of Code](https://adventofcode.com) problems in [Clojure](https://clojure.org/) to get hands-on fun experience with the language.
 
+Each day I write down a "Today I Learned" (TIL) so I don't just solve the problem, but also keep track of what I've learned, tricks I found, or just problems I liked.
+
 `λ🎄.(λ🎅.🎄(🎅🎅))(λ🎅.🎄(🎅🎅))`
+
+## Top References/Tools
+
+- [Learn Clojure (XinYMinutes)](https://learnxinyminutes.com/docs/clojure/) **<-- Start here if you're totally new to Clojure**
+- [Clojure Cheatsheet](https://clojure.org/api/cheatsheet)
+- [ClojureDocs - community examples](https://clojuredocs.org/)
 
 ## Usage
 

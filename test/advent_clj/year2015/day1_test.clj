@@ -1,6 +1,6 @@
-(ns advent-clj.year-2015.day-1-test
+(ns advent-clj.year2015.day1-test
   (:require [clojure.test :refer :all]
-            [advent-clj.year-2015.day-1 :refer [part1 part2]]))
+            [advent-clj.year2015.day1 :refer [part1 part2]]))
 
 (deftest part1test
   (testing "1"
