@@ -18,6 +18,8 @@
        s/split-lines
        (map s/trim)))
 
+(defn ->int [s] (Integer/parseInt s))
+
 (defn lines->ints
   "Gets the lines of file as Integers"
   [filename]
