@@ -13,6 +13,9 @@ Each day I write down a "Today I Learned" (TIL) so I don't just solve the proble
 - [Learn Clojure (XinYMinutes)](https://learnxinyminutes.com/docs/clojure/) **<-- Start here if you're totally new to Clojure**
 - [Clojure Cheatsheet](https://clojure.org/api/cheatsheet)
 - [ClojureDocs - community examples](https://clojuredocs.org/)
+  - [clojure.string](https://clojuredocs.org/clojure.string)
+- [regex.Pattern](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
+
 
 ## Usage
 
