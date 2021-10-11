@@ -44,6 +44,7 @@
 
 (defn in? [xs x]
   (cond
+    (string? xs) (not (nil? (s/index-of xs x)))
     (or (vector? xs) (list? xs)) (<= 0 (.indexOf xs x))
     (set? xs) (contains? xs x)
     (map? xs) (in? (vals xs) x) ; my decision to not just replicate contains?
@@ -55,3 +56,11 @@
    [:a :b :c] => ([:a :b :c] [:b :c] [:c])"
   [xs]
   (take (count xs) (iterate rest xs)))
+
+(defn any 
+  "Returns true if xs has any non-falsy value."
+  [xs] 
+  (->> xs
+       (filter identity)
+       first
+       boolean))

@@ -1,11 +1,18 @@
 (ns advent-clj.year2015.day5
   (:require
    [clojure.string :refer [index-of]]
-   [advent-clj.elf :refer [prev-curr lines prev-curr in? iter-rest]]))
+   [advent-clj.elf :refer [prev-curr lines in? iter-rest any]]))
+
+; TIL:
+; - This one was honestly a pain in clojure (or at least with my skill)
+; - Still figuring out state-based iterations and the core fns
+; - Also tripped on nil/false. Once sorted, the code is cleaner
+; - Use (seq xs) instead of (not (empty? xs))
+; - Surprised I had to write `any`, the `any?` in core seems like a waste of a valuable word
 
 (defn three-vowels? [s]
   (let [vowels #{\a \e \i \o \u}]
-    (<= 3 (count (filter #(contains? vowels %) (seq s))))))
+    (<= 3 (count (filter #(in? vowels %) (seq s))))))
 
 (defn letter-twice? [s]
   (->> (seq s)
@@ -15,7 +22,7 @@
 
 (defn has-bad-strings? [s]
   (let [bad ["ab" "cd" "pq" "xy"]]
-    (some some? (map #(index-of s %) bad))))
+    (any (map #(index-of s %) bad))))
 
 (defn nice? [s]
   (and
@@ -36,8 +43,7 @@
        prev-curr
        iter-rest
        (map #(if (in? (nthrest % 2) (first %)) (first %) nil))
-       (filter some?)
-       seq))
+       any))
 
 (defn repeat-with-one-between? [s] (re-find #"(\w).\1" s))
 
