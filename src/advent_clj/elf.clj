@@ -34,3 +34,24 @@
   "Returns a pair of streams, first is every even item, second is every odd"
   [xs]
   (apply map list (partition 2 xs)))
+
+(defn prev-curr 
+  "Returns a sequence of pairs of each element with their prev.
+   
+   (prev-curr [:a :b :c :d]) ; => ((:a :b) (:b :c) (:c :d))"
+  [xs]
+  (partition 2 1 xs))
+
+(defn in? [xs x]
+  (cond
+    (or (vector? xs) (list? xs)) (<= 0 (.indexOf xs x))
+    (set? xs) (contains? xs x)
+    (map? xs) (in? (vals xs) x) ; my decision to not just replicate contains?
+    (seq? xs) (in? (vec xs) x)
+    :else (throw (Exception. "Invalid collection provided for xs"))))
+
+(defn iter-rest
+  "Given a seq, returns seq of rest called repeatedly.
+   [:a :b :c] => ([:a :b :c] [:b :c] [:c])"
+  [xs]
+  (take (count xs) (iterate rest xs)))

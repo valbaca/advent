@@ -3,6 +3,7 @@
             [clojure.string :refer [starts-with?]]))
 
 ; TIL: sometimes the #() anon fn is wonky with simple return values
+; - https://github.com/tebeka/clj-digest
 
 (defn find-prefix [key prefix]
   (->> (range)
