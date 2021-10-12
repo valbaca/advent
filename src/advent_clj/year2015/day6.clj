@@ -5,9 +5,7 @@
 ; TIL
 ; - Another quite involved one...and runs very slow, >10s
 ; Several challenges:
-; - 2d looping. do-bits is still a mess. Options include:
-;     - generating a list of x-y pairs and just single-looping through those?
-;     - switching to something like core.matrix or raw java 2d int arrays
+; - 2d looping is SLOW. maybe use core.matrix or raw java 2d int arrays
 ; - Getting the parse/op fns setup right. Definitely a case of don't premature optimize.
 ; Until you know which arg is going to vary, hard to guess what meta-fns you'll need
 ; - I'm proud of the parse/op pair that I ended up with.
