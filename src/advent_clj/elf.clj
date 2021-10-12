@@ -2,12 +2,12 @@
   (:require [clojure.string :as s]))
 
 (defn smallest
-  "Returns the smallest element of xs according to compare. First wins ties."
+  "Returns the smallest element (first wins ties)."
   ([xs] (smallest compare xs))
   ([comp xs] (reduce #(if (<= (comp %1 %2) 0) %1 %2) xs)))
 
 (defn largest
-  "Returns the largest element of xs according to compare. First wins ties."
+  "Returns the largest element (first wins ties)."
   ([xs] (largest compare xs))
   ([comp xs] (reduce #(if (>= (comp %1 %2) 0) %1 %2) xs)))
 
@@ -23,12 +23,14 @@
        s/split-lines
        (map s/trim)))
 
-(defn ->int "string to int"[s] (Integer/parseInt s))
+(defn ->int 
+  "string to int, nil if error." 
+  [s] 
+  (try
+    (Integer/parseInt s) ; if you *want* an exception, use parseInt
+    (catch NumberFormatException _ nil)))
 
-(defn lines->ints
-  "Gets the lines of file as Integers"
-  [filename]
-  (map #(Integer/parseInt %) (lines filename)))
+(defn lines->ints [filename] (map ->int (lines filename)))
 
 (defn every-other
   "Returns a pair of streams, first is every even item, second is every odd"
@@ -60,7 +62,25 @@
 (defn any 
   "Returns true if xs has any non-falsy value."
   [xs] 
-  (->> xs
-       (filter identity)
-       first
-       boolean))
+  (boolean (first (filter identity xs))))
+
+(defn separate 
+  "Split on whitespace & commas" 
+  [s] 
+  (s/split s #"[\s,]"))
+
+(defn str<->int
+  "Safely convert string to int. If cannot, gives back arg"
+  [s]
+  (if-let [i (->int s)] i s))
+
+(defn split-ints
+  "Separate string and safely parses ints.
+   'foo 123,234 bar' => ('foo' 123 234 'bar')"
+  [s]
+  (map str<->int (separate s)))
+
+(defn pick-ints
+  "Returns a seq of the integers in s after splitting on whitespace & commas"
+  [s]
+  (remove nil? (map ->int (separate s))))
