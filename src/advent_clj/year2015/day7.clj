@@ -22,6 +22,7 @@
 (defn- exec-gate- [m k] ((get-gate m k) m))
 (def exec-gate (memoize exec-gate-)) ;; memoize is a lifesaver and so easy!
 
+;; c/o https://stackoverflow.com/a/41984792/158886
 (defn ->ushort [x] (bit-and 0xFFFF x))
 
 (defn gate-fn
