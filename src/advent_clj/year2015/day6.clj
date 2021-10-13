@@ -11,7 +11,10 @@
 ; - I'm proud of the parse/op pair that I ended up with.
 ; The logic is simple by using in? checks and by passing what to do to `op`
 ; - assoc-in and update-in are great!
+; https://clojuredocs.org/clojure.core/assoc-in
 ; - also proud of `pick-ints`, just a simple way to get what I need
+; first throw?
+; https://clojuredocs.org/clojure.core/throw
 
 (defn create-2d [n] (vec (repeat n (vec (repeat n 0)))))
 
