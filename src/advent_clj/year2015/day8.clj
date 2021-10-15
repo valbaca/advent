@@ -1,6 +1,7 @@
 (ns advent-clj.year2015.day8
-  (:require [advent-clj.elf :refer [lines sum]]
-            [clojure.string :refer [replace]]))
+  (:require
+   [advent-clj.elf :refer [lines sum]]
+   [clojure.string :refer [replace]]))
 
 ;; TIL
 ;; - This one was painful, despite how short the actual result ended up being

@@ -2,12 +2,12 @@
   (:require [clojure.string :as s]))
 
 (defn smallest
-  "Returns the smallest element (first wins ties)."
+  "Returns the smallest element (first wins ties) in O(n) time"
   ([xs] (smallest compare xs))
   ([comp xs] (reduce #(if (<= (comp %1 %2) 0) %1 %2) xs)))
 
 (defn largest
-  "Returns the largest element (first wins ties)."
+  "Returns the largest element (first wins ties) in O(n) time"
   ([xs] (largest compare xs))
   ([comp xs] (reduce #(if (>= (comp %1 %2) 0) %1 %2) xs)))
 

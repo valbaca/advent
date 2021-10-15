@@ -1,5 +1,5 @@
 (ns advent-clj.year2015.day1
-  (:require [advent-clj.elf :refer :all]))
+  (:require [advent-clj.elf :refer [sum]]))
 
 ; TIL: make sure the test load-on-save is successful or it uses the last successful eval of tests, which makes your test run useless
 ; Once the tests are loaded in the REPL successfully, then you can edit the src and re-run tests over and over with Ctrl+Alt+C T 
