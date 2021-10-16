@@ -1,7 +1,7 @@
 (ns advent-clj.year2015.day5
   (:require
    [clojure.string :refer [index-of]]
-   [advent-clj.elf :refer [prev-curr lines in? iter-rest any]]))
+   [advent-clj.elf :refer [prev-curr lines in? any iter-rest]]))
 
 ; TIL:
 ; - This one was honestly a pain in clojure (or at least with my skill)
@@ -37,7 +37,8 @@
 (comment (part1)) ;; => 255
 
 ;; This one still feels over-complicated, but it's working
-(defn has-pair-of-two? [s]
+(defn has-pair-of-two?
+  [s]
   (->> s
        seq
        prev-curr

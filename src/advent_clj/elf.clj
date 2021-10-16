@@ -84,3 +84,11 @@
   "Returns a seq of the integers in s after splitting on whitespace & commas"
   [s]
   (remove nil? (map ->int (separate s))))
+
+(defn seek
+  "Returns the first of xs that satisfies the predicate (default: identity).
+   
+   [pred f x] uses (iterate f x) for xs."
+  ([xs] (first (filter identity xs)))
+  ([pred xs] (first (filter pred xs)))
+  ([pred f x] (first (filter pred (iterate f x)))))
