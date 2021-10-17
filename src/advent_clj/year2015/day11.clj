@@ -15,14 +15,14 @@
     [\a true]
     [(inc-ch c) false]))
 
-(defn inc-str
+(defn inc-str ;; puts all strings in stack `s`, pops onto `z` and keeps carry
   ([s] (inc-str (reverse s) '() true))
-  ([s z carry]
-   (if (or (not carry) (empty? s))
-     (apply str (concat (when carry [\a]) (reverse s) z)) ;; done!
-     (let [[c & rest] s
-           [c++ carry++] (inc-char c)]
-       (recur rest (conj z c++) carry++))))) ;; regular increment
+  ([s z c] ;; s=string stack, z=result list, c=carry
+   (if (or (not c) (empty? s))
+     (apply str (when c \a) (concat (reverse s) z)) ;; done!
+     (let [[ch & rest] s
+           [ch++ c++] (inc-char ch)]
+       (recur rest (conj z ch++) c++))))) ;; regular increment
 
 (iterate inc-str "aaa")
 
@@ -31,22 +31,11 @@
 
 (defn all-valid-chars? [s] (not (seq (filter #{\i \o \l} s))))
 
-(defn get-pairs [xs] (filter (fn [[a b]] (= a b)) (prev-curr xs)))
+(defn pair-two? [s] (re-find #"(.)\1.*(?!\1)(.)\2" s))
+;;                             pair1  diff  pair2
+;; diff is a negative-lookahead of first char to ensure different pairs
 
-;; This one looks even worse than day 5's pair-of-two, ugh
-(defn has-pair-of-two?
-  [s]
-  (seq
-   (filter
-    (fn [[a b & rest]]
-      (and
-       (<= 2 (count rest))
-       (= a b)
-       (seq (remove #(= a (first %)) (get-pairs rest)))))
-    (iter-rest (seq s)))))
-
-(defn valid? [s]
-  ((every-pred all-valid-chars? has-straight? has-pair-of-two?) s))
+(defn valid? [s] ((every-pred all-valid-chars? has-straight? pair-two?) s))
 
 (defn next-valid [s] (seek valid? inc-str (inc-str s)))
 
