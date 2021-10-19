@@ -19,14 +19,32 @@ Each day I write down a "Today I Learned" (TIL) so I don't just solve the proble
 
 ## Usage
 
-Install [Leiningen](https://leiningen.org/)
+**Prerequisite:** Install [Leiningen](https://leiningen.org/)
+
+### Start REPL (Most recommended)
+
+    $ lein repl
+    # repl starts...
+    # use -main as a sanity check
+    advent-clj.core=> (-main)
+    λ🎄.(λ🎅.🎄(🎅🎅))(λ🎅.🎄(🎅🎅))
+
+
+### Run only core.clj and exit
 
     $ lein run
 
-OR
+### Build uberjar, a jar with Clojure & deps
 
     $ lein uberjar
-    $ java -jar advent-clj-0.1.0-standalone.jar [args]
+    # The resulting standalone can be run by java, from anywhere 
+    $ java -jar target/uberjar/advent-clj-0.1.0-SNAPSHOT-standalone.jar
+
+### Compile only .java files
+
+    $ lein javac
+    # Howdy is a basic hello world example
+    $ java -cp target/default/classes/ com.valbaca.advent.Howdy
 
 
 ## Progress
@@ -35,12 +53,12 @@ OR
 
 What I've completed in Clojure, within this repo
 
-- Year 2015: 🎁  PORTING IN PROGRESS  Currently porting over solutions from Go to get warmed up
+- Year 2015: 🎁  PORTING IN PROGRESS. Currently porting over solutions from Go to get warmed up
 - Years 2016 - 2020: 🎅 NOT STARTED in Clojure
 
 ### Overall Personal Advent Account Progress
 
-What I've completed in any language
+What I've completed **in any language**
 
 - Year 2015: 🎄 DONE! Mostly Days 1-19 in Go, 19-22 in Python, rest in Java
 - Year 2016: 🎁 IN PROGRESS @ Day 19. Days 1-7 in Python, rest in Java.

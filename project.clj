@@ -11,4 +11,6 @@
   :main ^:skip-aot advent-clj.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+  :source-paths ["src/clojure"]
+  :java-source-paths ["src/java"])
