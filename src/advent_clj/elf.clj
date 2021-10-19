@@ -49,7 +49,7 @@
     (string? xs) (not (nil? (s/index-of xs x)))
     (or (vector? xs) (list? xs)) (<= 0 (.indexOf xs x))
     (set? xs) (contains? xs x)
-    (map? xs) (in? (vals xs) x) ; my decision to not just replicate contains?
+    (map? xs) (in? (vals xs) x) ; my decision to not replicate `contains?` for keys
     (seq? xs) (in? (vec xs) x)
     :else (throw (Exception. "Invalid collection provided for xs"))))
 

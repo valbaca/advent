@@ -36,3 +36,4 @@
     :else 0))
 
 (defn part2 [] (sum-json (j/read-str input)))
+

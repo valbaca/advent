@@ -4,5 +4,5 @@
 (defn -main
   "Advent of Clojure!"
   [& args]
-  (println "λ🎄.(λ🎅.🎄(🎅🎅))(λ🎅.🎄(🎅🎅))")
+  (println (str "λ🎄.(λ🎅.🎄(🎅🎅))(λ🎅.🎄(🎅🎅))" args))
   (println "See the individual days for solutions and runners"))
