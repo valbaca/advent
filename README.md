@@ -56,6 +56,12 @@ Highly Recommended:
     # Howdy is a basic hello world example
     $ java -cp target/default/classes/ com.valbaca.advent.Howdy
 
+### IntelliJ / Cursive notes
+
+If you get ClassNotFound when running a method in Clojure, configure the following:
+- How to run it
+  - Run with Leiningen
+    - Profiles: dev
 
 ## Progress
 
