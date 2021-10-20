@@ -1,8 +1,6 @@
-# advent-clj
+# advent
 
-Advent of Clojure! 
-
-Solving [Advent of Code](https://adventofcode.com) problems in [Clojure](https://clojure.org/) to get hands-on fun experience with the language.
+Solving [Advent of Code](https://adventofcode.com) problems in [Clojure](https://clojure.org/) and [Java](https://dev.java) to get hands-on fun experience with the language.
 
 Each day I write down a "Today I Learned" (TIL) so I don't just solve the problem, but also keep track of what I've learned, tricks I found, or just problems I liked.
 
@@ -19,30 +17,42 @@ Each day I write down a "Today I Learned" (TIL) so I don't just solve the proble
 
 ## Usage
 
-**Prerequisite:** Install [Leiningen](https://leiningen.org/)
+Prerequisites:
+1. Install Java
+2. Install Clojure
+3. Install [Leiningen](https://leiningen.org/)
+
+Highly Recommended: 
+1. [IntelliJ](https://www.jetbrains.com/idea/): the best Java IDE
+    - Note: IntelliJ has a free Community Edition
+2. [Cursive](https://cursive-ide.com/): IntelliJ plugin that adds Clojure support
+    - Note: Cursive has a free license for non-commercial
 
 ### Start REPL (Most recommended)
 
     $ lein repl
-    # repl starts...
-    # use -main as a sanity check
+
+    # repl starts. use -main as a sanity check
+
     advent-clj.core=> (-main)
     λ🎄.(λ🎅.🎄(🎅🎅))(λ🎅.🎄(🎅🎅))
 
 
-### Run only core.clj and exit
+### Just run core.clj and exit
 
     $ lein run
 
 ### Build uberjar, a jar with Clojure & deps
 
     $ lein uberjar
-    # The resulting standalone can be run by java, from anywhere 
+
+    # The resulting standalone can be run by java, from anywhere, and executes core.clj 
     $ java -jar target/uberjar/advent-clj-0.1.0-SNAPSHOT-standalone.jar
 
 ### Compile only .java files
 
     $ lein javac
+
     # Howdy is a basic hello world example
     $ java -cp target/default/classes/ com.valbaca.advent.Howdy
 
@@ -60,9 +70,9 @@ What I've completed in Clojure, within this repo
 
 What I've completed **in any language**
 
-- Year 2015: 🎄 DONE! Mostly Days 1-19 in Go, 19-22 in Python, rest in Java
+- Year 2015: 🎄 DONE! Mostly Days 1-19 in [Go](https://go.dev/), 19-22 in [Python](https://python.org/), rest in Java
 - Year 2016: 🎁 IN PROGRESS @ Day 19. Days 1-7 in Python, rest in Java.
-- Year 2017: 🎁 IN PROGRESS @ Day 7. Days 1-5 in Crystal
+- Year 2017: 🎁 IN PROGRESS @ Day 7. Days 1-5 in [Crystal](https://crystal-lang.org/)
 - Year 2018: 🎁 IN PROGRESS @ Day 6
 - Year 2019: 🎁 IN PROGRESS @ Day 2
 - Year 2020: 🎁 IN PROGRESS @ Day 4
