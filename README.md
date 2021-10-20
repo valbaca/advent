@@ -1,62 +1,93 @@
 # advent
-Solving Advent of Code problems. See https://adventofcode.com/
 
-# Running
+Solving [Advent of Code](https://adventofcode.com) problems in [Clojure](https://clojure.org/) and [Java](https://dev.java) to get hands-on fun experience with the language.
 
-## Requirements:
-- Gradle
-- Java 16+
+Each day I write down a "Today I Learned" (TIL) so I don't just solve the problem, but also keep track of what I've learned, tricks I found, or just problems I liked.
 
-Run with Gradle wrapper: `./gradlew`
+`λ🎄.(λ🎅.🎄(🎅🎅))(λ🎅.🎄(🎅🎅))`
 
-```shell
-# Compile and run on JVM
-$ ./gradlew run           # compile and run on jvm
+## Top References/Tools
 
-# to pass args to the main method:
-$ ./gradlew run --args="foo"
+- [Learn Clojure (XinYMinutes)](https://learnxinyminutes.com/docs/clojure/) **<-- Start here if you're totally new to Clojure**
+- [Clojure Cheatsheet](https://clojure.org/api/cheatsheet)
+- [ClojureDocs - community examples](https://clojuredocs.org/)
+  - [clojure.string](https://clojuredocs.org/clojure.string)
+- [regex.Pattern](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 
-# Native via GraalVM
-$ ./gradlew nativeImage   # build native executable
-$ ./build/graal/advent    # run native executable
-```
 
-# My Advent Year Progress
+## Usage
 
-- Advent Year 2015: **FINISHED** 
-  - Days 1-19 solved with Go in 2019 (TODO: convert to Java)
-  - Days 19-22 solved with Python in 2021
-  - Last couple of days finished with Java in 2021
-- Advent Year 2016: *IN PROGRESS*
-  - Days 1-7 solved with Python in 2019-2020
-  - Days 1 solved with Clojure in 2018 and Day 8 solved with Clojure in 2021
-- Year 2017: *IN PROGRESS*
-  - Days 1-5 solved with Crystal in 2020
+Prerequisites:
+1. Install Java
+2. Install Clojure
+3. Install [Leiningen](https://leiningen.org/)
 
-## Why different languages? What's best?
+Highly Recommended: 
+1. [IntelliJ](https://www.jetbrains.com/idea/): the best Java IDE
+    - Note: IntelliJ has a free Community Edition
+2. [Cursive](https://cursive-ide.com/): IntelliJ plugin that adds Clojure support
+    - Note: Cursive has a free license for non-commercial
 
-I like using Advent of Code to learn the basics of working with a language: reading & parsing input, building functions, classes, etc.
+### Start REPL (Most recommended)
 
-Throughout this process I've found the general strengths and weaknesses of the various languages:
+    $ lein repl
 
-- [Go](https://go.dev/)
-  - Pros: Very efficient, millisecond execution, fast regex, simple. Code basically writes itself.
-  - Cons: Bad ergonomics; repetitive error handling, no function overloading or generics, slices are [tricky and need a cheatsheet](https://ueokande.github.io/go-slice-tricks/). Language where I was actually limited by my typing speed.
-  - Verdict: By pure numbers, Go has helped me solve the most problems by mostly getting out of my way, but it ruins that by inserting err/nil handling at every step.
-- [Python](https://www.python.org/)
-  - Pros: Incredibly readable/writable language, great syntax, does so much for you. Great support in VS Code for writing, running, & debugging. 
-  - Cons: Very slow, often unsure if my code is poorly written or if Python was just inefficient. Dealing with pyenv/versions was a nightmare.
-  - Verdict: Python is the #1 language for Advent for good reason. My main gripe was never knowing if my solution was slow (and wrong) or just slow because of Python itself.
-- [Clojure](https://clojure.org/)
-  - Pros: REPL, functional programming gives super-powers
-  - Cons: Very, very slow, especially startups. REPL connection finicky. Spent more time wrestling with tools than code. Sometimes immutability really slows down writing or execution
-  - Verdict: I only did a small amount of Advent with Clojure, and while Clojure gives powerful capabilities, it felt like I was translating the problem once into my mind, then again into Clojure, then again dealing with debugging/tooling.
-- [Crystal](https://crystal-lang.org/)
-  - Pros: very, very efficient, **micro**second executions. Arguably a perfect language
-  - Cons: Very rough edges. No IDE support, no debugger, no autocomplete. Printf-debugging is all you've got  
-  - Verdict: Crystal will be *fantastic* when it gets better tooling.
-- [Java](https://dev.java/)
-  - Pros: efficient, sub-second execution. Tons of data structures, algorithms, and help. IntelliJ is awesome.
-  - Cons: verbose static void main. Boring. Bad higher-level programming (no macros etc).
-  - Verdict: Java is my personal primary language and the IntelliJ IDE does a great job of covering Java's warts.
+    # repl starts. use -main as a sanity check
 
+    advent-clj.core=> (-main)
+    λ🎄.(λ🎅.🎄(🎅🎅))(λ🎅.🎄(🎅🎅))
+
+
+### Just run core.clj and exit
+
+    $ lein run
+
+### Build uberjar, a jar with Clojure & deps
+
+    $ lein uberjar
+
+    # The resulting standalone can be run by java, from anywhere, and executes core.clj 
+    $ java -jar target/uberjar/advent-clj-0.1.0-SNAPSHOT-standalone.jar
+
+### Compile only .java files
+
+    $ lein javac
+
+    # Howdy is a basic hello world example
+    $ java -cp target/default/classes/ com.valbaca.advent.Howdy
+
+
+## Progress
+
+### Advent of Clojure Progress
+
+What I've completed in Clojure, within this repo
+
+- Year 2015: 🎁  PORTING IN PROGRESS. Currently porting over solutions from Go to get warmed up
+- Years 2016 - 2020: 🎅 NOT STARTED in Clojure
+
+### Overall Personal Advent Account Progress
+
+What I've completed **in any language**
+
+- Year 2015: 🎄 DONE! Mostly Days 1-19 in [Go](https://go.dev/), 19-22 in [Python](https://python.org/), rest in Java
+- Year 2016: 🎁 IN PROGRESS @ Day 19. Days 1-7 in Python, rest in Java.
+- Year 2017: 🎁 IN PROGRESS @ Day 7. Days 1-5 in [Crystal](https://crystal-lang.org/)
+- Year 2018: 🎁 IN PROGRESS @ Day 6
+- Year 2019: 🎁 IN PROGRESS @ Day 2
+- Year 2020: 🎁 IN PROGRESS @ Day 4
+
+## License
+
+Copyright © 2021 Valentin Baca
+
+This program and the accompanying materials are made available under the
+terms of the Eclipse Public License 2.0 which is available at
+http://www.eclipse.org/legal/epl-2.0.
+
+This Source Code may also be made available under the following Secondary
+Licenses when the conditions for such availability set forth in the Eclipse
+Public License, v. 2.0 are satisfied: GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or (at your
+option) any later version, with the GNU Classpath Exception which is available
+at https://www.gnu.org/software/classpath/license.html.
