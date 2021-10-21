@@ -23,11 +23,11 @@
        s/split-lines
        (map s/trim)))
 
-(defn ->int 
-  "string to int, nil if error." 
-  [s] 
+(defn ->int
+  "string to int, nil if error."
+  [s]
   (try
-    (Integer/parseInt s) ; if you *want* an exception, use parseInt
+    (Integer/parseInt s)                                    ; if you *want* an exception, use parseInt
     (catch NumberFormatException _ nil)))
 
 (defn lines->ints [filename] (map ->int (lines filename)))
@@ -37,7 +37,7 @@
   [xs]
   (apply map list (partition 2 xs)))
 
-(defn prev-curr 
+(defn prev-curr
   "Returns a sequence of pairs of each element with their prev.
    
    (prev-curr [:a :b :c :d]) ; => ((:a :b) (:b :c) (:c :d))"
@@ -49,7 +49,7 @@
     (string? xs) (not (nil? (s/index-of xs x)))
     (or (vector? xs) (list? xs)) (<= 0 (.indexOf xs x))
     (set? xs) (contains? xs x)
-    (map? xs) (in? (vals xs) x) ; my decision to not replicate `contains?` for keys
+    (map? xs) (in? (vals xs) x)                             ; my decision to not replicate `contains?` for keys
     (seq? xs) (in? (vec xs) x)
     :else (throw (Exception. "Invalid collection provided for xs"))))
 
@@ -59,15 +59,15 @@
   [xs]
   (take (count xs) (iterate rest xs)))
 
-(defn any 
+(defn any
   "Returns true if xs has any non-falsy value."
-  [xs] 
+  [xs]
   (boolean (first (filter identity xs))))
 
-(defn separate 
-  "Split on whitespace & commas" 
-  [s] 
-  (s/split s #"[\s,]"))
+(defn separate
+  "Split on whitespace, periods & commas"
+  [s]
+  (s/split s #"[\s,.]"))
 
 (defn str<->int
   "Safely convert string to int. If cannot, gives back arg"
