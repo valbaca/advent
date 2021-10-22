@@ -1,6 +1,12 @@
 (ns advent-clj.year2015.day14
   (:require [advent-clj.elf :refer :all]))
 
+;; TIL:
+;; A pretty easy, mostly tedious one.
+;; Always gotta watch those fencepost errors.
+;; Originally missed a "step" when the reindeer recovers
+
+
 (def comet {:distance            0
             :speed               14
             :stamina             10

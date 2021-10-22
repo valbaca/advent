@@ -15,6 +15,23 @@
 
 (defn product "Multiply elements" [xs] (reduce * xs))
 
+(defn clamp
+  "Ensures a number is at least `lowest` (default 0) and
+  at most `highest` (default Infinite)"
+  ([v] (clamp v 0))
+  ([v lowest] (if (< v lowest) lowest v))
+  ([v lowest highest]
+   {:pre [(< lowest highest)]}
+   (cond
+     (< v lowest) lowest
+     (< highest v) highest
+     :else v)))
+
+(defn clamp-down
+  "Ensures a number is at most `highest`"
+  [v highest]
+  (if (< v highest) v highest))
+
 (defn lines
   "Gets the trimmed lines of a file as a seq"
   [filename]
