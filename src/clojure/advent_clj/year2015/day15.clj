@@ -2,6 +2,13 @@
   (:require [advent-clj.elf :refer :all]
             [clojure.string]))
 
+;; TIL:
+;; First time working with state (atom) which was pretty necessary to prevent the soln from going
+;; exponential and re-repeating solved configurations (measurements)
+;; Still have to lookup things like
+;; - key-based hash destructuring
+;; - where to put metadata (like :pre)
+
 (def seen (atom #{}))
 
 (defn in-seen [x] (in? @seen x))
