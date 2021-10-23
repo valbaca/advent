@@ -2,7 +2,7 @@
   (:require 
    [clojure.string :as s]
    [clojure.data.json :as j]
-   [advent-clj.elf :refer [in? pick-ints ->int sum lines]]))
+   [advent-clj.elf :refer [in? pick-ints ->int sum ns-input]]))
 
 ; TIL:
 ; This one really shined with Clojure:
@@ -15,7 +15,7 @@
 
 (defn part1 [s] (sum (only-ints s)))
 
-(def input (first (lines "input/year2015/day12.txt")))
+(def input (first (ns-input)))
 
 (defn part1 [] (sum (only-ints input)))
 

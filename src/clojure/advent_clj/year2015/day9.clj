@@ -45,7 +45,7 @@
       (for [dest (next-dests p a)]
         (travel m (conj p dest) a opt))))))
 
-(def test-input (lines "input/year2015/day9_test.txt"))
+(def test-input (lines "input/year2015/day9-test.txt"))
 (def test-santa-map (dist-map test-input))
 (comment (travel test-santa-map))
 

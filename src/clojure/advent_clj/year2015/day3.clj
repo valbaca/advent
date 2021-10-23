@@ -2,7 +2,7 @@
   (:require
    [clojure.string :refer [trim]]
    [clojure.set :as set]
-   [advent-clj.elf :refer [every-other]]))
+   [advent-clj.elf :refer :all]))
 
 ; TIL:
 ; - Using the acc (accumulator) in reduce to keep the state of the problem
@@ -31,7 +31,7 @@
         travel-init {:prev start :seen (hash-set start)}]
     (:seen (reduce travel travel-init dirs))))
 
-(def input (seq (trim (slurp "input/year2015/day3.txt"))))
+(def input (seq (first (ns-input))))
 
 (defn part1 [dirs]
   (count (houses-seen dirs)))

@@ -35,10 +35,10 @@
         table-perms (map round-table-pairs perms)]
     (largest (map #(seating-score m %) table-perms))))
 
-(solve (lines "input/year2015/day13_test.txt"))
+(solve (ns-test-input))
 
 ; part 1
-(def input (lines "input/year2015/day13.txt"))
+(def input (ns-input))
 (solve input)
 ; part 2
 (solve input :self)

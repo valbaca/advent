@@ -1,7 +1,7 @@
 (ns advent-clj.year2015.day5
   (:require
    [clojure.string :refer [index-of]]
-   [advent-clj.elf :refer [prev-curr lines in? any iter-rest]]))
+   [advent-clj.elf :refer [prev-curr ns-input in? any iter-rest]]))
 
 ; TIL:
 ; - This one was honestly a pain in clojure (or at least with my skill)
@@ -30,7 +30,7 @@
    (letter-twice? s)
    (not (has-bad-strings? s))))
 
-(def input (lines "input/year2015/day5.txt"))
+(def input (ns-input))
 
 (defn part1 [] (count (filter nice? input)))
 

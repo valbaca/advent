@@ -11,7 +11,7 @@
 ;; - This one was also pretty dumb b/c the order of replacements for Part 1 mattered. My original result was over by 2. no idea why.
 ;; - Part 2 was super easy though b/c you can just count slashes and quotes plus 2
 
-(def test-input (lines "input/year2015/day8_test.txt"))
+(def test-input (lines "input/year2015/day8-test.txt"))
 
 (defn decode [s]
   (-> s

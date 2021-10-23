@@ -1,5 +1,5 @@
 (ns advent-clj.year2015.day7
-  (:require [advent-clj.elf :refer [separate ->int lines]]))
+  (:require [advent-clj.elf :refer [separate ->int ns-test-input ns-input]]))
 
 ; TIL:
 ; - This one was a lot of fun and challenging
@@ -44,16 +44,16 @@
        (= b "RSHIFT") (gate-fn unsigned-bit-shift-right a c)
        (= b "AND") (gate-fn bit-and a c)
        (= b "OR") (gate-fn bit-or a c)
-       :else (throw (IllegalArgumentException. s)))]))
+       :else (throw (IllegalArgumentException. ^String s)))]))
 
 (defn ->gates [lines]
   (reduce (fn [a [k f]] (assoc a k f)) {} (map parse lines)))
 
-(def test-input (lines "input/year2015/day7_test.txt"))
+(def test-input (ns-test-input))
 (def test-gates (->gates test-input))
 
 
-(def input (lines "input/year2015/day7.txt"))
+(def input (ns-input))
 (def part1-gates (->gates input))
 (comment (exec-gate part1-gates "a"))
 

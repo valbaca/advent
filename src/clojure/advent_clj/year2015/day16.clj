@@ -20,7 +20,7 @@
    "cars"        2
    "perfumes"    1})
 
-(def input (lines "input/year2015/day16.txt"))
+(def input (ns-input))
 
 (defn parse [line]
   (->> (clojure.string/split line #"[\s:,]")

@@ -1,6 +1,6 @@
 (ns advent-clj.year2015.day6
   (:require [clojure.string :refer []]
-            [advent-clj.elf :refer [in? lines pick-ints sum]]))
+            [advent-clj.elf :refer [in? ns-input pick-ints sum]]))
 
 ; TIL
 ; - Another quite involved one...and runs very slow, >10s
@@ -52,7 +52,7 @@
     (in? s "toggle") (op flip-bit s)
     :else (throw (Exception. "Couldn't parse"))))
 
-(def input (lines "input/year2015/day6.txt"))
+(def input (ns-input))
 
 (comment (time (->> input
                     (map parse)

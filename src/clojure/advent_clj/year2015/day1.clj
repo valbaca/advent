@@ -1,5 +1,5 @@
 (ns advent-clj.year2015.day1
-  (:require [advent-clj.elf :refer [sum]]))
+  (:require [advent-clj.elf :refer :all]))
 
 ; TIL: make sure the test load-on-save is successful or it uses the last successful eval of tests, which makes your test run useless
 ; Once the tests are loaded in the REPL successfully, then you can edit the src and re-run tests over and over with Ctrl+Alt+C T 
@@ -26,7 +26,7 @@
        inc)) ;; pos is 1-indexed
 
 (defn main []
-  (let [in (slurp "input/year2015/day1.txt")]
+  (let [in (first (ns-input))]
     [(part1 in)
      (part2 in)]))
 

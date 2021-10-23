@@ -24,8 +24,8 @@
 
 (defn lines->ingredients [lines] (into {} (map parse lines)))
 
-;(def ings (lines->ingredients (lines "input/year2015/day15-test.txt")))
-(def ings (lines->ingredients (lines "input/year2015/day15.txt")))
+;(def ings (lines->ingredients (ns-test-input))
+(def ings (lines->ingredients (ns-input)))
 
 ;; ingredients name count
 (defn sub-score [i [n c]] (map #(* c %) (get i n)))

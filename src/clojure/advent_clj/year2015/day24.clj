@@ -1,6 +1,6 @@
 (ns advent-clj.year2015.day24
   (:require
-   [advent-clj.elf :refer [sum product smallest lines->ints]]
+   [advent-clj.elf :refer :all]
    [clojure.math.combinatorics :as c]))
 
 ; TIL:
@@ -36,12 +36,12 @@
           (recur (inc i) nextMinPkgs nextEntanglement))))))
 
 (defn part1-test []
-  (let [input (lines->ints "input/year2015/day24_test.txt")]
+  (let [input (lines->ints "input/year2015/day24-test.txt")]
      (println "Part 1 Test")
      (time (solve input 3))))
 
 (defn part2-test []
-  (let [input (lines->ints "input/year2015/day24_test.txt")]
+  (let [input (lines->ints "input/year2015/day24-test.txt")]
      (println "Part 2 test")
      (time (solve input 4))))
 

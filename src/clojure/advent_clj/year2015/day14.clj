@@ -57,7 +57,7 @@
      :rest-remaining      full-rest-remaining
      :full-rest-remaining full-rest-remaining}))
 
-(def input (map parse (lines "input/year2015/day14.txt")))
+(def input (map parse (ns-input)))
 
 (solve 2503 input)
 

@@ -1,5 +1,5 @@
 (ns advent-clj.year2015.day2
-  (:require [advent-clj.elf :refer [->int lines sum]]
+  (:require [advent-clj.elf :refer :all]
             [clojure.string :refer [split]]))
 
 ; TIL: easy peasy
@@ -14,8 +14,7 @@
 (defn wrapping [xs] (calc-wrapping (sort xs)))
 
 (defn part1 []
-  (->> "input/year2015/day2.txt"
-       lines
+  (->> (ns-input)
        (map parse)
        (map wrapping)
        sum))
@@ -27,8 +26,7 @@
 (defn bow [xs] (calc-bow (sort xs)))
 
 (defn part2 []
-  (->> "input/year2015/day2.txt"
-       lines
+  (->> (ns-input)
        (map parse)
        (map bow)
        sum))
