@@ -109,3 +109,17 @@
   ([xs] (first (filter identity xs)))
   ([pred xs] (first (filter pred xs)))
   ([pred f x] (first (filter pred (iterate f x)))))
+
+;; c/o https://clojuredocs.org/clojure.core/bit-test#example-5d401face4b0ca44402ef78b
+(defn powerset
+  "Returns all the ways you could select items from the collection.
+  Each element is considered distinct. If coll has duplicates, output has duplicates.
+  Counts 0 to 2^count and uses the bits to select elements."
+  [coll]
+  (let [cnt (count coll)
+        bits (Math/pow 2 cnt)]
+    (for [i (range bits)]
+      (for [j (range i)
+            :while (< j cnt)
+            :when (bit-test i j)]
+        (nth coll j)))))
