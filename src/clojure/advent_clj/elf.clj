@@ -123,3 +123,26 @@
             :while (< j cnt)
             :when (bit-test i j)]
         (nth coll j)))))
+
+(defn- ns-inner-input
+  [test?]
+  (let [[_ year day] (separate (str *ns*))
+        day-with-suffix (str (if (= :test test?) (str day "-test") day) ".txt")
+        filename (s/join "/" ["input" year day-with-suffix])]
+    (lines filename)))
+
+(defn ns-input
+  "Gets the input based on the current namespace.
+  Expects file to be: input/yearYYYY/dayDD.txt
+  (No leading zeros in DD)
+  `lines` is applied to input"
+  []
+  (ns-inner-input :not-test))
+
+(defn ns-test-input
+  "Gets the test input based on current namespace.
+  Expects file to be: input/yearYYYY/dayDD-test.txt
+  (No leading zeros in DD)
+  `lines` is applied to input`"
+  []
+  (ns-inner-input :test))
