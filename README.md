@@ -58,7 +58,7 @@ Highly Recommended:
 
 ### IntelliJ / Cursive notes
 
-If you get ClassNotFound when running a method in Clojure, configure the following:
+If you get `ClassNotFound` when running a method in Clojure in IntelliJ, configure the following:
 - How to run it
   - Run with Leiningen
     - Profiles: dev
