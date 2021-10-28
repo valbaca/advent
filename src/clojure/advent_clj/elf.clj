@@ -165,5 +165,10 @@
             :when (bit-test i j)]
         (nth coll j)))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; MACROS
 
-
+;; c/o https://stackoverflow.com/a/11705723/158886
+(defmacro create-map
+  [& syms]
+  (zipmap (map keyword syms) syms))
