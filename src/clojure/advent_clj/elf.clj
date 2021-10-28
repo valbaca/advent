@@ -169,6 +169,8 @@
 ;; MACROS
 
 ;; c/o https://stackoverflow.com/a/11705723/158886
-(defmacro create-map
+(defmacro kw-map
+  "Creates a keyword map, a map with keyword keys from the symbols and values are the evaluated symbol.
+  (let [x 1 y 2 z 3] (kw-map x y z)) => {:x 1 :y 2 :z 3}"
   [& syms]
   (zipmap (map keyword syms) syms))

@@ -12,6 +12,7 @@ Each day I write down a "Today I Learned" (TIL) so I don't just solve the proble
 - [Clojure Cheatsheet](https://clojure.org/api/cheatsheet)
 - [ClojureDocs - community examples](https://clojuredocs.org/)
   - [clojure.string](https://clojuredocs.org/clojure.string)
+- [Associative (Map) Destructuring](https://clojure.org/guides/destructuring#_associative_destructuring)
 - [regex.Pattern](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 
 

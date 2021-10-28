@@ -2,13 +2,17 @@
   (:require [advent-clj.elf :refer :all]
             [clojure.math.combinatorics :as c]))
 
+;; TIL:
+;; - More fun with destructuring (associative destructuring is neat but also a tricky syntax
+;; - Used a macro for the first time. Isn't even very necessary, just found I wanted it to avoid repetition
+
 (def input (ns-input))
 (defn split-line [line]
   (remove #(= % "") (split-ints line)))
 
 (defn parse-line [type line]
   (let [[name cost dmg armor] (split-line line)]
-    (create-map type name cost dmg armor)))
+    (kw-map type name cost dmg armor)))
 
 (defn parse-lines [lines]
   (let [vlines (vec lines)
@@ -16,7 +20,7 @@
         weapons (map-parse-line :weapon (subvec vlines 1 6))
         armor (map-parse-line :armor (subvec vlines 8 13))
         rings (map-parse-line :ring (subvec vlines 15))]
-    (create-map weapons armor rings)))
+    (kw-map weapons armor rings)))
 
 (def items (parse-lines input))
 
@@ -42,10 +46,9 @@
   (reduce add-item init-player (remove nil? (flatten item-set))))
 
 (defn hits [a b]
-  (let [dmg (:dmg a)
-        arm (:armor b)
-        net-dmg (- dmg arm)]
-    (update b :hp #(- % (clamp net-dmg 1)))))
+  (let [dmg-calc (- (:dmg a) (:armor b))
+        actual-dmg (clamp dmg-calc 1)] ;; always at least 1 dmg
+    (update b :hp #(- % actual-dmg))))
 
 (defn fight
   ([player boss] (fight player boss :player))
@@ -54,8 +57,7 @@
      (<= (:hp player) 0) :boss
      (<= (:hp boss) 0) :player
      (= turn :player) (recur player (hits player boss) :boss)
-     :else (recur (hits boss player) boss :player)
-     )))
+     :else (recur (hits boss player) boss :player))))
 
 ;For example, suppose you have 8 hit points, 5 damage, and 5 armor, and that the boss has 12 hit points, 7 damage, and 2 armor:
 (assert (= :player (fight {:hp 8 :dmg 5 :armor 5} {:hp 12 :dmg 7 :armor 2})))
