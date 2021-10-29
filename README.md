@@ -70,19 +70,20 @@ If you get `ClassNotFound` when running a method in Clojure in IntelliJ, configu
 
 What I've completed in Clojure, within this repo
 
-- Year 2015: 🎁  PORTING IN PROGRESS. Currently porting over solutions from Go to get warmed up
-- Years 2016 - 2020: 🎅 NOT STARTED in Clojure
+- Year 2015: 🎄 All in Clojure!
+- Year 2016: 🎁 IN PROGRESS
+- Years 2016 - 2020: ❄️ NOT STARTED *in Clojure*
 
 ### Overall Personal Advent Account Progress
 
 What I've completed **in any language**
 
-- Year 2015: 🎄 DONE! Mostly Days 1-19 in [Go](https://go.dev/), 19-22 in [Python](https://python.org/), rest in Java
-- Year 2016: 🎁 IN PROGRESS @ Day 19. Days 1-7 in Python, rest in Java.
-- Year 2017: 🎁 IN PROGRESS @ Day 7. Days 1-5 in [Crystal](https://crystal-lang.org/)
-- Year 2018: 🎁 IN PROGRESS @ Day 6
-- Year 2019: 🎁 IN PROGRESS @ Day 2
-- Year 2020: 🎁 IN PROGRESS @ Day 4
+- Year 2015: 🎄 DONE! Did days 1-19 in [Go](https://go.dev/), 19-22 in [Python](https://python.org/), and rest in Java. Re-solved in Clojure to warm up.
+- Year 2016: 🎁 IN PROGRESS @ Day 19. Days 1-7 in Python, 8-18 in Java.
+- Year 2017: ❄️ ON ICE. Was @ Day 7. Days 1-5 in [Crystal](https://crystal-lang.org/)
+- Year 2018: ❄️ ON ICE. Was @ Day 6
+- Year 2019: ❄️ ON ICE. Was @ Day 2
+- Year 2020: ❄️ ON ICE. Was @ Day 4
 
 ## License
 
