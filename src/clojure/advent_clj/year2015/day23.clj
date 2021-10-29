@@ -1,19 +1,23 @@
 (ns advent-clj.year2015.day23
   (:require [advent-clj.elf :refer :all]))
 
+;; TIL:
+;; - more destructuring, this time using :as
+;; - Finally feeling very familiar and comfortable with Clojure!
+;; Pretty much go this one working on the first attempt (again, recently solved these in Python)
+;; This one especially felt very natural in clojure b/c executing the operands can be done in one line,
+;; but could also very easily be made generic. But with how terse clojure can be, there's not much point.
+
 (def input (ns-input))
 
-(def init-state
-  {:input     input
-   :curr-line 0
-   :registers {"a" 0 "b" 0}})
+(def init-state {:input input :curr-line 0 :registers {"a" 0 "b" 0}})
 
 (defn jump [state offset] (update state :curr-line #(+ % offset)))
 (defn next-line [state] (jump state 1))
 
 (defn exec [{:keys [input curr-line registers] :as state}]
   ;(println state) ;; DEBUG
-  (if-not (<= 0 curr-line (dec (count input)))
+  (if-not (within? (count input) curr-line)
     state ;; exit when out of bounds
     (let [[op arg & args] (sep (get input curr-line))]
       (case op

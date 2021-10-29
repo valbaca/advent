@@ -110,6 +110,11 @@
 (defn minus "Simply #(- % x), use for update/update-in" [x] (fn [y] (- y x)))
 (defn plus "Simply #(+ % x), use for update/update-in" [x] (fn [y] (+ y x)))
 
+(defn within?
+  ([end val] (within? 0 end val))
+  ([start end val]
+   (and (<= start val) (< val end))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SEQ/COLLECTION related functions
 
