@@ -101,6 +101,9 @@
   [v highest]
   (if (< v highest) v highest))
 
+(defn minus "Simply #(- % x), use for update/update-in" [x] (fn [y] (- y x)))
+(defn plus "Simply #(+ % x), use for update/update-in" [x] (fn [y] (+ y x)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SEQ/COLLECTION related functions
 
