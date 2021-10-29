@@ -19,12 +19,13 @@
   (ns-inner-input :test))
 
 (defn lines
-  "Gets the trimmed lines of a file as a seq"
+  "Gets the trimmed lines of a file as a vec"
   [filename]
   (->> filename
        slurp
        s/split-lines
-       (map s/trim)))
+       (map s/trim)
+       vec))
 
 (declare separate)
 (defn- ns-inner-input
@@ -46,7 +47,7 @@
   "convert string to int, nil if error."
   [s]
   (try
-    (Integer/parseInt s)                                    ; if you *want* an exception, use parseInt
+    (Integer/parseInt s) ; if you *want* an exception, use parseInt
     (catch NumberFormatException _ nil)))
 
 (defn lines->ints [filename] (map ->int (lines filename)))
@@ -61,6 +62,11 @@
    'foo 123,234 bar' => ('foo' 123 234 'bar')"
   [s]
   (map str<->int (separate s)))
+
+(defn sep
+  "Separate string and safely parse ints as vec (also gets rid of blank strings)"
+  [s]
+  (filterv #(not= % "") (split-ints s)))
 
 (defn pick-ints
   "Returns a seq of only the ints in s after separate"
