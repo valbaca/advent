@@ -115,6 +115,24 @@
   ([start end val]
    (and (<= start val) (< val end))))
 
+(defn to
+  "Return seq of ints from start (default 0) *to* end; end is inclusive.
+  Works properly on negative numbers.
+  (to) ;; same as (range)
+  (to 5) => (0 1 2 3 4 5)
+  (to -2 2) => (-2 -1 0 1 2)
+  (to 2 -2) => (2 1 0 -1 -2)"
+  ([] (range))
+  ([end-inclusive] (to 0 end-inclusive))
+  ([start end-inclusive]
+   (to start end-inclusive 1))
+  ([start end-inclusive step]
+   (if (< start end-inclusive)
+     (range start (inc end-inclusive) step)
+     (reverse (range end-inclusive (inc start) step)))))
+
+(defn abs [x] (if (neg? x) (- x) x))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SEQ/COLLECTION related functions
 
