@@ -46,3 +46,5 @@
 (defn strs->grid [strs] (mapv vec strs))
 
 (defn s->grid [s] (-> s s/split-lines strs->grid))
+
+(defn transpose [g] (apply mapv vector g))

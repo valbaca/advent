@@ -23,18 +23,7 @@
 (defn valid-checksum
   "Generates the actual valid checksum for `name`"
   [name]
-  ;; Separate string into characters, count them (frequencies)
-  ;; and sort by frequency-then-alphabetically
-  (->> name
-       seq
-       frequencies
-       seq
-       (map #(vector (first %) (- (second %))))
-       (sort-by (juxt second first))
-       (take 5)
-       (map first)
-       s/join))
-
+  (->> name sorted-by-freq (take 5) s/join))
 
 (defn valid-checksum? [name checksum]
   (= checksum (valid-checksum name)))

@@ -198,6 +198,44 @@
             :when (bit-test i j)]
         (nth coll j)))))
 
+(defn map-str
+  "Simply combines map, then s/join"
+  [to-char-or-str-f xs]
+  (s/join (map to-char-or-str-f xs)))
+
+; Common pattern of decorate-sort-undecorate
+
+(defn decorate ;; NOT related to Christmas
+
+;; trees or lights
+  "Returns seq of [(f elem) elem] pairs"
+  [f xs]
+  (map (fn [x] [(f x) x]) xs))
+
+(defn undecorate
+  "Undo decorate"
+  [xs]
+  (map second xs))
+
+(defn- sort-by-frequency-desc-then-elem-asc [freqs]
+  (->> freqs
+       (decorate #(vector (- (second %)) (first %)))
+       (sort-by first) ;; sort by the "decorator" function
+       undecorate))
+
+(defn by-most-freq
+  "Returns seq of [item freq] pairs, sorted by most-frequent first (then elements in ascending order)."
+  [xs]
+  (->> xs
+       frequencies
+       seq
+       sort-by-frequency-desc-then-elem-asc))
+
+(defn sorted-by-freq
+  "Returns (just) the elements sorted in descending frequency (most-frequent first).
+   Ties are handled by comparing the elements directly (in ascending order)"
+  [xs] (->> xs by-most-freq (map first)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hashing / Interop wrapper
 (defn md5 [s] (MD5Hasher/hexHash s))
