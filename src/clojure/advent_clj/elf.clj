@@ -1,5 +1,6 @@
 (ns advent-clj.elf
-  (:require [clojure.string :as s]))
+  (:require [clojure.string :as s])
+  (:import [com.valbaca.advent.elf MD5Hasher]))
 
 ;; INPUT/FILE/LINE fns
 
@@ -196,6 +197,10 @@
             :while (< j cnt)
             :when (bit-test i j)]
         (nth coll j)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Hashing / Interop wrapper
+(defn md5 [s] (MD5Hasher/hexHash s))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MACROS

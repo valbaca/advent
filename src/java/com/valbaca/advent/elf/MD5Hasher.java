@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 
 public class MD5Hasher {
 
+    private static MD5Hasher SINGLETON = new MD5Hasher();
+
     private DigestUtils md5Hasher;
 
     public MD5Hasher() {
@@ -18,6 +20,6 @@ public class MD5Hasher {
     }
 
     public static String hexHash(String s) {
-        return new MD5Hasher().hex(s);
+        return SINGLETON.hex(s);
     }
 }
