@@ -143,6 +143,13 @@
   [xs]
   (apply map list (partition 2 xs)))
 
+;; TODO: consolidate every-other & evens-odds
+(defn evens-odds
+  "Like every-other, but handles an odd-number input"
+  [xs]
+  (let [both (partition-all 2 xs)]
+    [(keep first both) (keep second both)]))
+
 (defn prev-curr
   "Returns a sequence of pairs of each element with their prev.
    (prev-curr [:a :b :c :d]) ; => ((:a :b) (:b :c) (:c :d))"
@@ -205,12 +212,17 @@
 
 ; Common pattern of decorate-sort-undecorate
 
-(defn decorate ;; NOT related to Christmas
+(defn fx-pair
+  "Returns a vector pair of [(f x) x].
+  Useful for decorators and mapping with original input"
+  ([f] (fn [x] [(f x) x]))
+  ([f x] [(f x) x]))
 
-;; trees or lights
+(defn decorate
+  ;; NOT related to Christmas trees or lights
   "Returns seq of [(f elem) elem] pairs"
   [f xs]
-  (map (fn [x] [(f x) x]) xs))
+  (map (fx-pair f) xs))
 
 (defn undecorate
   "Undo decorate"
@@ -235,6 +247,19 @@
   "Returns (just) the elements sorted in descending frequency (most-frequent first).
    Ties are handled by comparing the elements directly (in ascending order)"
   [xs] (->> xs by-most-freq (map first)))
+
+(defn rev
+  "Rev(erse):
+  [xs] - reverse elements of xs into a vector
+  (rev (range 1 4)) => [3 2 1]
+
+  [a b] or [a b & more] - reverse args into a vector (individual args are unchanged)
+  (rev a b) => [b a]
+  (rev [a b & more]) => [e r o m b a] "
+  ([xs] (vec (reverse xs)))
+  ([a b] [b a])
+  ([a b c] [c b a])
+  ([a b c & more] (into [] (concat (reverse more) [c b a]))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hashing / Interop wrapper
