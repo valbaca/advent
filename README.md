@@ -83,7 +83,8 @@ What I've completed **in any language**
 - Year 2017: ❄️ ON ICE. Was @ Day 7. Days 1-5 in [Crystal](https://crystal-lang.org/)
 - Year 2018: ❄️ ON ICE. Was @ Day 6
 - Year 2019: ❄️ ON ICE. Was @ Day 2
-- Year 2020: ❄️ ON ICE. Was @ Day 4
+- Year 2020: 🎄 DONE! All done in Python in [valbaca/advent-py](https://github.com/valbaca/advent-py)
+- Year 2021: 🎅 IN PROGRESS. Also doing in Python in [valbaca/advent-py](https://github.com/valbaca/advent-py)
 
 ## License
 
