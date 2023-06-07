@@ -78,14 +78,15 @@ What I've completed in Clojure, within this repo
 
 What I've completed **in any language**
 
-- Year 2015: 🎄 DONE! Did days 1-19 in [Go](https://go.dev/), 19-22 in [Python](https://python.org/), and rest in Java. Re-solved in Clojure to warm up.
+- Year 2015: 🎄 DONE! Did days 1-19 in [Go](https://go.dev/) [valbaca/advent-go](https://github.com/valbaca/advent-go), 19-22 in [Python](https://python.org/) [valbaca/advent-py](https://github.com/valbaca/advent-py), and rest in Java. 
+  - Again in Clojure to learn the language.
 - Year 2016: 🎁 IN PROGRESS @ Day 19. Days 1-7 in Python, 8-18 in Java.
-- Year 2017: ❄️ ON ICE. Was @ Day 7. Days 1-5 in [Crystal](https://crystal-lang.org/)
-- Year 2018: ❄️ ON ICE. Was @ Day 6
-- Year 2019: ❄️ ON ICE. Was @ Day 2
-- Year 2020: 🎄 DONE! All done in Python in [valbaca/advent-py](https://github.com/valbaca/advent-py)
-- Year 2021: 🎅 IN PROGRESS in Python in [valbaca/advent-py](https://github.com/valbaca/advent-py)
-- Year 2022: 🎄 DONE! All in Kotlin [valbaca/advent-kt](https://github.com/valbaca/advent-kt)
+- Year 2017: ❄️ On ice.
+- Year 2018: ❄️ On ice.
+- Year 2019: ❄️ On ice.
+- Year 2020: 🎄 DONE in Python in [valbaca/advent-py](https://github.com/valbaca/advent-py)
+- Year 2021: 🎄 DONE in Python in [valbaca/advent-py](https://github.com/valbaca/advent-py)
+- Year 2022: 🎄 DONE in Kotlin [valbaca/advent-kt](https://github.com/valbaca/advent-kt)
 
 ## License
 
